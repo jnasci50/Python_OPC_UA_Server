@@ -38,6 +38,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
+    
     data_a = {}
 
     for i, address in enumerate(ADRESS_SERVER):
@@ -71,123 +72,108 @@ def home():
 
 @app.route("/Fila_B")
 def FilaB():
+    
     data_b = {}
 
     for i, address in enumerate(ADRESS_SERVER):
         try:
             if address in connected_servers:
-                data_b[f'km{i + 1}a_data'] = get_opc_data(connected_servers[address], NODE_READ_VALUE[:])
+                data_b[f'km{i + 1}b_data'] = get_opc_data(connected_servers[address], NODE_READ_VALUE[:])
             else:
-                data_b[f'km{i + 1}a_data'] = {NODE_READ_VALUE[0]: 0}
+                data_b[f'km{i + 1}b_data'] = {NODE_READ_VALUE[0]: 0}
         except Exception as e:
             print(f'Erro ao obter dados do servidor {address}: {e}')
-            data_b[f'km{i + 1}a_data'] = {NODE_READ_VALUE[0]: 0}
+            data_b[f'km{i + 1}b_data'] = {NODE_READ_VALUE[0]: 0}
 
     return render_template('index.html',
-                           KM1A_Temperatura=data_b.get('km1a_data', {}).get(NODE_READ_VALUE[0], 0),
-                           PU1A_Temperatura=data_b.get('km2a_data', {}).get(NODE_READ_VALUE[0], 0),
-                           KM2A_temperatura=data_b.get('km2a_data', {}).get(NODE_READ_VALUE[0], 0),
-                           PU2A_Temperatura=data_b.get('pu2a_data', {}).get(NODE_READ_VALUE[0], 0),
-                           KM3A_Temperatura=data_b.get('km3a_data', {}).get(NODE_READ_VALUE[0], 0),
-                           PU3A_Temperatura=data_b.get('pu3a_data', {}).get(NODE_READ_VALUE[0], 0),
-                           KM4A_Temperatura=data_b.get('km4a_data', {}).get(NODE_READ_VALUE[0], 0),
-                           PU4A_Temperatura=data_b.get('pu4a_data', {}).get(NODE_READ_VALUE[0], 0),
-                           KM5A_Temperatura=data_b.get('km5a_data', {}).get(NODE_READ_VALUE[0], 0),
-                           PU5A_Temperatura=data_b.get('pu5a_data', {}).get(NODE_READ_VALUE[0], 0),
-                           KM6A_Temperatura=data_b.get('km6a_data', {}).get(NODE_READ_VALUE[0], 0),
-                           PU6A_Temperatura=data_b.get('pu6a_data', {}).get(NODE_READ_VALUE[0], 0),
-                           KM7A_Temperatura=data_b.get('km7a_data', {}).get(NODE_READ_VALUE[0], 0),
-                           PU7A_Temperatura=data_b.get('pu7a_data', {}).get(NODE_READ_VALUE[0], 0),
-                           KM8A_Temperatura=data_b.get('km8a_data', {}).get(NODE_READ_VALUE[0], 0),
-                           PU8A_Temperatura=data_b.get('pu8a_data', {}).get(NODE_READ_VALUE[0], 0),
+                           KM1B_Temperatura=data_b.get('km1b_data', {}).get(NODE_READ_VALUE[0], 0),
+                           PU1B_Temperatura=data_b.get('km2b_data', {}).get(NODE_READ_VALUE[0], 0),
+                           KM2B_temperatura=data_b.get('km2b_data', {}).get(NODE_READ_VALUE[0], 0),
+                           PU2B_Temperatura=data_b.get('pu2b_data', {}).get(NODE_READ_VALUE[0], 0),
+                           KM3B_Temperatura=data_b.get('km3b_data', {}).get(NODE_READ_VALUE[0], 0),
+                           PU3B_Temperatura=data_b.get('pu3b_data', {}).get(NODE_READ_VALUE[0], 0),
+                           KM4B_Temperatura=data_b.get('km4b_data', {}).get(NODE_READ_VALUE[0], 0),
+                           PU4B_Temperatura=data_b.get('pu4b_data', {}).get(NODE_READ_VALUE[0], 0),
+                           KM5B_Temperatura=data_b.get('km5b_data', {}).get(NODE_READ_VALUE[0], 0),
+                           PU5B_Temperatura=data_b.get('pu5b_data', {}).get(NODE_READ_VALUE[0], 0),
+                           KM6B_Temperatura=data_b.get('km6b_data', {}).get(NODE_READ_VALUE[0], 0),
+                           PU6B_Temperatura=data_b.get('pu6b_data', {}).get(NODE_READ_VALUE[0], 0),
+                           KM7B_Temperatura=data_b.get('km7b_data', {}).get(NODE_READ_VALUE[0], 0),
+                           PU7B_Temperatura=data_b.get('pu7b_data', {}).get(NODE_READ_VALUE[0], 0),
+                           KM8B_Temperatura=data_b.get('km8b_data', {}).get(NODE_READ_VALUE[0], 0),
+                           PU8B_Temperatura=data_b.get('pu8b_data', {}).get(NODE_READ_VALUE[0], 0),
                            )
 
 
 @app.route("/Fila_C")
 def FilaC():
+    
     data_c = {}
 
     for i, address in enumerate(ADRESS_SERVER):
         try:
             if address in connected_servers:
-                data_c[f'km{i + 1}a_data'] = get_opc_data(connected_servers[address], NODE_READ_VALUE[:])
+                data_c[f'km{i + 1}c_data'] = get_opc_data(connected_servers[address], NODE_READ_VALUE[:])
             else:
-                data_c[f'km{i + 1}a_data'] = {NODE_READ_VALUE[0]: 0}
+                data_c[f'km{i + 1}c_data'] = {NODE_READ_VALUE[0]: 0}
         except Exception as e:
             print(f'Erro ao obter dados do servidor {address}: {e}')
-            data_c[f'km{i + 1}a_data'] = {NODE_READ_VALUE[0]: 0}
+            data_c[f'km{i + 1}c_data'] = {NODE_READ_VALUE[0]: 0}
 
     return render_template('index.html',
-                           KM1A_Temperatura=data_c.get('km1a_data', {}).get(NODE_READ_VALUE[0], 0),
-                           PU1A_Temperatura=data_c.get('km2a_data', {}).get(NODE_READ_VALUE[0], 0),
-                           KM2A_temperatura=data_c.get('km2a_data', {}).get(NODE_READ_VALUE[0], 0),
-                           PU2A_Temperatura=data_c.get('pu2a_data', {}).get(NODE_READ_VALUE[0], 0),
-                           KM3A_Temperatura=data_c.get('km3a_data', {}).get(NODE_READ_VALUE[0], 0),
-                           PU3A_Temperatura=data_c.get('pu3a_data', {}).get(NODE_READ_VALUE[0], 0),
-                           KM4A_Temperatura=data_c.get('km4a_data', {}).get(NODE_READ_VALUE[0], 0),
-                           PU4A_Temperatura=data_c.get('pu4a_data', {}).get(NODE_READ_VALUE[0], 0),
-                           KM5A_Temperatura=data_c.get('km5a_data', {}).get(NODE_READ_VALUE[0], 0),
-                           PU5A_Temperatura=data_c.get('pu5a_data', {}).get(NODE_READ_VALUE[0], 0),
-                           KM6A_Temperatura=data_c.get('km6a_data', {}).get(NODE_READ_VALUE[0], 0),
-                           PU6A_Temperatura=data_c.get('pu6a_data', {}).get(NODE_READ_VALUE[0], 0),
-                           KM7A_Temperatura=data_c.get('km7a_data', {}).get(NODE_READ_VALUE[0], 0),
-                           PU7A_Temperatura=data_c.get('pu7a_data', {}).get(NODE_READ_VALUE[0], 0),
-                           KM8A_Temperatura=data_c.get('km8a_data', {}).get(NODE_READ_VALUE[0], 0),
-                           PU8A_Temperatura=data_c.get('pu8a_data', {}).get(NODE_READ_VALUE[0], 0),
+                           KM1C_Temperatura=data_c.get('km1c_data', {}).get(NODE_READ_VALUE[0], 0),
+                           PU1C_Temperatura=data_c.get('km2c_data', {}).get(NODE_READ_VALUE[0], 0),
+                           KM2C_temperatura=data_c.get('km2c_data', {}).get(NODE_READ_VALUE[0], 0),
+                           PU2C_Temperatura=data_c.get('pu2c_data', {}).get(NODE_READ_VALUE[0], 0),
+                           KM3C_Temperatura=data_c.get('km3c_data', {}).get(NODE_READ_VALUE[0], 0),
+                           PU3C_Temperatura=data_c.get('pu3c_data', {}).get(NODE_READ_VALUE[0], 0),
+                           KM4C_Temperatura=data_c.get('km4c_data', {}).get(NODE_READ_VALUE[0], 0),
+                           PU4C_Temperatura=data_c.get('pu4c_data', {}).get(NODE_READ_VALUE[0], 0),
+                           KM5C_Temperatura=data_c.get('km5c_data', {}).get(NODE_READ_VALUE[0], 0),
+                           PU5C_Temperatura=data_c.get('pu5c_data', {}).get(NODE_READ_VALUE[0], 0),
+                           KM6C_Temperatura=data_c.get('km6c_data', {}).get(NODE_READ_VALUE[0], 0),
+                           PU6C_Temperatura=data_c.get('pu6c_data', {}).get(NODE_READ_VALUE[0], 0),
+                           KM7C_Temperatura=data_c.get('km7c_data', {}).get(NODE_READ_VALUE[0], 0),
+                           PU7C_Temperatura=data_c.get('pu7c_data', {}).get(NODE_READ_VALUE[0], 0),
+                           KM8C_Temperatura=data_c.get('km8c_data', {}).get(NODE_READ_VALUE[0], 0),
+                           PU8C_Temperatura=data_c.get('pu8c_data', {}).get(NODE_READ_VALUE[0], 0),
                            )
 
 
 @app.route("/Fila_D")
 def FilaD():
-    # Machine KM6D
-    if ADRESS_SERVER[0] in connected_servers:
-        km6d_data = get_opc_data(connected_servers[ADRESS_SERVER[0]], NODE_READ_VALUE[:])
-    else:
-        km6d_data = {node: 'Servidor indisponível' for node in NODE_READ_VALUE[:]}
+    
+    data_d = {}
 
-    # Machine PU 6D
-    if ADRESS_SERVER[1] in connected_servers:
-        pu6d_data = get_opc_data(connected_servers[ADRESS_SERVER[1]], NODE_READ_VALUE[:])
-    else:
-        pu6d_data = {node: 'Servidor indisponível' for node in NODE_READ_VALUE[:]}
-
-    # Machine KM7D
-    if ADRESS_SERVER[2] in connected_servers:
-        km7d_data = get_opc_data(connected_servers[ADRESS_SERVER[2]], NODE_READ_VALUE[:])
-    else:
-        km7d_data = {node: 'Servidor indisponível' for node in NODE_READ_VALUE[:]}
-
-    # Machine PU 7D
-    if ADRESS_SERVER[3] in connected_servers:
-        pu7d_data = get_opc_data(connected_servers[ADRESS_SERVER[3]], NODE_READ_VALUE[:])
-    else:
-        pu7d_data = {node: 'Servidor indisponível' for node in NODE_READ_VALUE[:]}
-
-    # Machine KM 8D
-    if ADRESS_SERVER[4] in connected_servers:
-        km8d_data = get_opc_data(connected_servers[ADRESS_SERVER[4]], NODE_READ_VALUE[:])
-    else:
-        km8d_data = {node: 'Servidor indisponível' for node in NODE_READ_VALUE[:]}
-
-    # Machine PU 8D
-    if ADRESS_SERVER[5] in connected_servers:
-        pu8d_data = get_opc_data(connected_servers[ADRESS_SERVER[5]], NODE_READ_VALUE[:])
-    else:
-        pu8d_data = {node: 'Servidor indisponível' for node in NODE_READ_VALUE[:]}
-
-
+    for i, address in enumerate(ADRESS_SERVER):
+        try:
+            if address in connected_servers:
+                data_d[f'km{i + 1}d_data'] = get_opc_data(connected_servers[address], NODE_READ_VALUE[:])
+            else:
+                data_d[f'km{i + 1}d_data'] = {NODE_READ_VALUE[0]: 0}
+        except Exception as e:
+            print(f'Erro ao obter dados do servidor {address}: {e}')
+            data_d[f'km{i + 1}d_data'] = {NODE_READ_VALUE[0]: 0}
 
     return render_template('index.html',
-                           # Grupo 6D
-                           KM6D_Temperatura=km6d_data[NODE_READ_VALUE[0]],
-                           PU6D_Temperatura=pu6d_data[NODE_READ_VALUE[0]],
-                           # Grupo 7D
-                           KM7D_temperatura=km7d_data[NODE_READ_VALUE[0]],
-                           PU7D_Temperatura=pu7d_data[NODE_READ_VALUE[0]],
-                           # Grupo 8D
-                           KM8D_Temperatura=km8d_data[NODE_READ_VALUE[0]],
-                           PU8D_Temperatura=pu8d_data[NODE_READ_VALUE[0]],
+                           #KM1D_Temperatura=data_c.get('km1d_data', {}).get(NODE_READ_VALUE[0], 0),
+                           #PU1D_Temperatura=data_c.get('km2d_data', {}).get(NODE_READ_VALUE[0], 0),
+                           #KM2D_temperatura=data_c.get('km2d_data', {}).get(NODE_READ_VALUE[0], 0),
+                           #PU2D_Temperatura=data_c.get('pu2d_data', {}).get(NODE_READ_VALUE[0], 0),
+                           #KM3D_Temperatura=data_c.get('km3d_data', {}).get(NODE_READ_VALUE[0], 0),
+                           #PU3D_Temperatura=data_c.get('pu3d_data', {}).get(NODE_READ_VALUE[0], 0),
+                           #KM4D_Temperatura=data_c.get('km4d_data', {}).get(NODE_READ_VALUE[0], 0),
+                           #PU4D_Temperatura=data_c.get('pu4d_data', {}).get(NODE_READ_VALUE[0], 0),
+                           #KM5D_Temperatura=data_c.get('km5d_data', {}).get(NODE_READ_VALUE[0], 0),
+                           #PU5D_Temperatura=data_c.get('pu5d_data', {}).get(NODE_READ_VALUE[0], 0),
+                           KM6D_Temperatura=data_c.get('km6d_data', {}).get(NODE_READ_VALUE[0], 0),
+                           PU6D_Temperatura=data_c.get('pu6d_data', {}).get(NODE_READ_VALUE[0], 0),
+                           KM7D_Temperatura=data_c.get('km7d_data', {}).get(NODE_READ_VALUE[0], 0),
+                           PU7D_Temperatura=data_c.get('pu7d_data', {}).get(NODE_READ_VALUE[0], 0),
+                           KM8D_Temperatura=data_c.get('km8d_data', {}).get(NODE_READ_VALUE[0], 0),
+                           PU8D_Temperatura=data_c.get('pu8d_data', {}).get(NODE_READ_VALUE[0], 0),
                            )
+
 
 if __name__ == '__main__':
     app.run()
