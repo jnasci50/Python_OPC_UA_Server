@@ -8,7 +8,7 @@ def conect_server(adress):
         client.connect()
         root = client.get_root_node()
         print(f'Conexão com servidor OPC UA. Realizada com sucesso')
-        print(f'Número do Root: {root}')
+        #print(f'Número do Root: {root}')
     except:
         print('Não Foi possivel conectar ao servidor OPC')
         client.disconnect()
@@ -49,15 +49,23 @@ def read_input_value(node_id, client):
     """
     client_node = client.get_node(node_id)  # get node
     client_node_value = client_node.get_value()  # read node value
-    print(f"Servidor OPC UA nó :{ str(client_node)}. Valor lido:{str(client_node_value)}.")
-    result = round(float(client_node_value), 2)
+    #print(f"Servidor OPC UA nó :{ str(client_node)}. Valor lido:{str(client_node_value)}.")
+    result_float = float(client_node_value)
+    result = round(result_float,2)/10
+    print(result)
 
-    if result > 65:
-        subject = "Alerta: Alta temperatura no painel"
-        body = (f"O valor de temperatura no painel da máquina: {node_id} excedeu o limite: {result}. "
-                f"Favor direcionar um mantenedor para avaliar")
-        to_address = "jaironascij2@gmail.com"
-        send_email(subject, body, to_address)
+    tentativas = 0
+
+    if result > 120.0:
+        for i in range(4):
+            subject = "Alerta: Alta temperatura no painel"
+            body = (f"O valor de temperatura no painel da máquina: {node_id} excedeu o limite: {result}. "
+            f"Favor direcionar um mantenedor para avaliar")
+            to_address = "jaironascij2@gmail.com"
+            send_email(subject, body, to_address)
+            tentativas = i+1
+            if tentativas == 2:
+                break
 
     return result
 
