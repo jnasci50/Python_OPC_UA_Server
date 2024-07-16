@@ -10,7 +10,7 @@ def conect_server(adress):
         print(f'Conexão com servidor OPC UA. Realizada com sucesso')
         #print(f'Número do Root: {root}')
     except:
-        print('Não Foi possivel conectar ao servidor OPC')
+        #print('Não Foi possivel conectar ao servidor OPC')
         client.disconnect()
     return client
 
@@ -31,7 +31,7 @@ def get_opc_data(server, nodes):
         try:
             data[node] = read_input_value(node, server)
         except Exception as e:
-            print(f'Erro ao ler o nó {node}: {e}')
+            #print(f'Erro ao ler o nó {node}: {e}')
             data[node] = 0  # ou um valor padrão, por exemplo, 0
     return data
 
@@ -56,7 +56,7 @@ def read_input_value(node_id, client):
 
     tentativas = 0
 
-    if result > 120.0:
+    if result == 40.1:
         for i in range(4):
             subject = "Alerta: Alta temperatura no painel"
             body = (f"O valor de temperatura no painel da máquina: {node_id} excedeu o limite: {result}. "

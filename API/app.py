@@ -84,6 +84,7 @@ def home():
             print(f'Não foi possível conectar ao servidor OPC UA em {address}: Tipo do Erro: {e}')
 
     print(f'Dicionario Servidores OPC:{connected_servers_A}')
+    print(f'Tipo dados dicionario servidor opc:{type(connected_servers_A)}')
     data_a = {}
 
     for i, address in enumerate(ADRESS_SERVER_A):
@@ -261,13 +262,13 @@ def FilaD():
                            #PU4C_Temperatura=data_c.get('machine8_C_data', {}).get(NODE_READ_VALUE[1], 0),
                            #KM5C_Temperatura=data_c.get('machine9_C_data', {}).get(NODE_READ_VALUE[0], 0),
                            #PU5C_Temperatura=data_c.get('machine10_C_data', {}).get(NODE_READ_VALUE[1], 0),
-                           KM6D_Temperatura=data_d.get('machine11_D_data', {}).get(NODE_READ_VALUE[0], 0),
-                           PU6D_Temperatura=data_d.get('machine12_D_data', {}).get(NODE_READ_VALUE[1], 0),
-                           KM7D_Temperatura=data_d.get('machine13_D_data', {}).get(NODE_READ_VALUE[0], 0),
-                           PU7D_Temperatura=data_d.get('machine14_D_data', {}).get(NODE_READ_VALUE[1], 0),
-                           KM8D_Temperatura=data_d.get('machine15_D_data', {}).get(NODE_READ_VALUE[0], 0),
-                           PU8D_Temperatura=data_d.get('machine16_D_data', {}).get(NODE_READ_VALUE[1], 0),
+                           KM6D_Temperatura=data_d.get('machine1_D_data', {}).get(NODE_READ_VALUE[0], 0),
+                           PU6D_Temperatura=data_d.get('machine2_D_data', {}).get(NODE_READ_VALUE[1], 0),
+                           KM7D_Temperatura=data_d.get('machine3_D_data', {}).get(NODE_READ_VALUE[0], 0),
+                           PU7D_Temperatura=data_d.get('machine4_D_data', {}).get(NODE_READ_VALUE[1], 0),
+                           KM8D_Temperatura=data_d.get('machine5_D_data', {}).get(NODE_READ_VALUE[0], 0),
+                           PU8D_Temperatura=data_d.get('machine6_D_data', {}).get(NODE_READ_VALUE[1], 0),
                            )
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=False)
